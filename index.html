@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Ali · DevSecOps Engineer</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts for Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0f;
+            color: #e5e5e5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .section-subtitle {
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Header / Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1e1e2a;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #38bdf8;
+            background: #1e1e2a;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .nav-links a {
+            color: #a0a0b0;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            color: #38bdf8;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .terminal-header span {
+            color: #94a3b8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: #14141f;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #2a2a3a;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .hero-image {
+            background: linear-gradient(145deg, #1a1a2a, #0f0f1a);
+            border-radius: 30px;
+            padding: 2rem;
+            border: 1px solid #2a2a3a;
+            position: relative;
+        }
+
+        .code-window {
+            background: #0a0a12;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .window-header {
+            background: #1e1e2a;
+            padding: 0.75rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+
+        .window-dot:nth-child(2) { background: #ffbd2e; }
+        .window-dot:nth-child(3) { background: #27c93f; }
+
+        .code-content {
+            padding: 1.5rem;
+            font-family: monospace;
+            color: #9ca3af;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: #38bdf8;
+            color: #0a0a0f;
+            padding: 0.875rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            padding: 0.875rem 2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #2a2a3a;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-card {
+            background: #14141f;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #2a2a3a;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #1e1e2a;
+            color: #38bdf8;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin: 0.25rem;
+            border: 1px solid #2a2a3a;
+        }
+
+        .skill-level {
+            margin: 1.5rem 0;
+        }
+
+        .skill-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            width: 100px;
+            color: #94a3b8;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: #1e1e2a;
+            border-radius: 3px;
+            margin: 0 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #38bdf8;
+            border-radius: 3px;
+        }
+
+        .skill-percent {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* Grid for Industry Knowledge / Tools */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .expertise-card {
+            background: #14141f;
+            border: 1px solid #2a2a3a;
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .expertise-card h4 {
+            color: #38bdf8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .expertise-card ul {
+            list-style: none;
+        }
+
+        .expertise-card li {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .expertise-card li i {
+            color: #38bdf8;
+            font-size: 0.8rem;
+        }
+
+        .tools-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tool-badge {
+            background: #1e1e2a;
+            color: #94a3b8;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            border: 1px solid #2a2a3a;
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .exp-card {
+            background: #14141f;
+            border: 1px solid #2a2a3a;
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .exp-date {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        .exp-company {
+            color: #94a3b8;
+        }
+
+        .exp-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-pill {
+            background: #1e1e2a;
+            color: #9ca3af;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid #2a2a3a;
+        }
+
+        /* Projects Grid (similar to tools but for projects) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-item {
+            background: #14141f;
+            border: 1px solid #2a2a3a;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .project-item:hover {
+            border-color: #38bdf8;
+            transform: translateY(-5px);
+        }
+
+        .project-icon {
+            color: #38bdf8;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-item h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-item p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Awards & Certs */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .award-card {
+            background: #14141f;
+            border: 1px solid #2a2a3a;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .award-year {
+            color: #38bdf8;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .award-title {
+            color: #fff;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .award-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .cert-item {
+            background: #1a1a2a;
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cert-item i {
+            color: #38bdf8;
+            font-size: 1.5rem;
+        }
+
+        .cert-info h5 {
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .cert-info p {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        /* Contact / Footer */
+        .contact-section {
+            background: #0f0f17;
+            border-radius: 40px;
+            padding: 4rem;
+            margin: 4rem 0;
+            border: 1px solid #2a2a3a;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .chat-bubble {
+            background: #1a1a2a;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid #2a2a3a;
+            position: relative;
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #1a1a2a;
+            border-left: 1px solid #2a2a3a;
+            border-bottom: 1px solid #2a2a3a;
+            transform: rotate(45deg);
+        }
+
+        .assistant-avatar {
+            width: 40px;
+            height: 40px;
+            background: #38bdf8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0a0f;
+            font-weight: bold;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #1e1e2a;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .hero-grid, .about-grid, .contact-grid, .experience-grid, .projects-grid, .awards-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">MA</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#certs">Certifications</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#contact" class="btn-primary" style="padding: 0.5rem 1.5rem;">Hire Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="terminal-header">
+                        <span>⟜</span>
+                        <span>Building Experience</span>
+                        <span>⟜</span>
+                        <span>Initializing DevSecOps Pipeline</span>
+                        <span>⟜</span>
+                        <span>Deploying Portfolio</span>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <span class="section-subtitle">Hello, I'm</span>
+                    </div>
+                    <h1>Muhammad Ali</h1>
+                    <p style="font-size: 1.5rem; color: #94a3b8; margin-top: 0.5rem;">DevSecOps Engineer</p>
+                    <p style="color: #94a3b8; margin: 2rem 0; max-width: 500px;">Secure, automate, scale. Linux • K8s • AWS • CI/CD • Threat Modelling. CEH & RHCSA certified.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#projects" class="btn-primary">View Projects</a>
+                        <a href="#contact" class="btn-outline">Let's Talk</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Years Linux</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Pipelines</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Certs</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <span class="window-dot"></span>
+                            <span class="window-dot"></span>
+                            <span class="window-dot"></span>
+                        </div>
+                        <div class="code-content">
+                            <span style="color:#38bdf8;">~ $</span> whoami<br>
+                            muhammad-ali<br>
+                            <span style="color:#38bdf8;">~ $</span> cat skills<br>
+                            {
+                              "devsecops": "advocate",<br>
+                              "cloud": ["aws", "k8s", "docker"],<br>
+                              "security": "ceh",<br>
+                              "iac": "terraform"<br>
+                            }<br>
+                            <span style="color:#38bdf8;">~ $</span> █
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" style="padding: 5rem 0;">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <span class="section-subtitle">About Me</span>
+                    <h2>Meet your next<br>DevSecOps partner</h2>
+                    <div class="about-card" style="margin-top: 2rem;">
+                        <p style="color: #cbd5e1; margin-bottom: 1.5rem;">DevSecOps Engineer with hands-on experience in Linux administration, Docker deployments, Kubernetes orchestration, and CI/CD automation using Jenkins and GitHub.</p>
+                        <p style="color: #94a3b8;">CEH and RHCSA certified. Focused on automation, cloud infrastructure, and security best practices woven into every layer of the DevOps lifecycle.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="about-card">
+                        <h3 style="color: #fff; margin-bottom: 1rem;">⚙️ Core Competencies</h3>
+                        <div class="skill-level">
+                            <div class="skill-row">
+                                <span class="skill-name">DevOps</span>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 92%"></div></div>
+                                <span class="skill-percent">92%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="skill-name">Cloud</span>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 88%"></div></div>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="skill-name">Security</span>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-row">
+                                <span class="skill-name">Automation</span>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <span class="skill-tag">Linux (RHEL/Ubuntu)</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag">Bash/Python</span>
+                            <span class="skill-tag">SonarQube</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Expertise (Industry + Tools) -->
+    <section id="expertise" style="padding: 5rem 0; background: #0f0f17;">
+        <div class="container">
+            <span class="section-subtitle">Technical Expertise</span>
+            <h2>2+ years of DevSecOps experience<br>across industry & cutting-edge tools</h2>
+            <div class="expertise-grid">
+                <!-- Industry Knowledge Column -->
+                <div>
+                    <h3 style="color: #fff; margin-bottom: 1.5rem;">Industry Knowledge</h3>
+                    <div class="expertise-card">
+                        <h4>Continuous Integration & Delivery</h4>
+                        <p style="color: #94a3b8; margin-bottom: 1rem;">Advanced CI/CD pipelines with automated testing, security gates, and rollback strategies.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>DevSecOps & Automation</h4>
+                        <p style="color: #94a3b8; margin-bottom: 1rem;">End-to-end workflow automation reducing manual intervention by 85%.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Incident & Vulnerability Management</h4>
+                        <p style="color: #94a3b8; margin-bottom: 1rem;">Rapid response, root cause analysis, and proactive security scanning.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Scaled Agile & Scrum</h4>
+                        <p style="color: #94a3b8; margin-bottom: 1rem;">SAFe practices, sprint planning, and cross-functional team leadership.</p>
+                    </div>
+                </div>
+                <!-- Tools & Tech Column -->
+                <div>
+                    <h3 style="color: #fff; margin-bottom: 1.5rem;">Tools & Technologies</h3>
+                    <div class="expertise-card">
+                        <h4>Amazon Web Services (AWS)</h4>
+                        <div class="tools-cloud">
+                            <span class="tool-badge">EC2</span><span class="tool-badge">RDS</span><span class="tool-badge">S3</span><span class="tool-badge">VPC</span><span class="tool-badge">Lambda</span><span class="tool-badge">CloudFormation</span><span class="tool-badge">IAM</span><span class="tool-badge">EKS</span>
+                        </div>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>CI/CD & Version Control</h4>
+                        <div class="tools-cloud">
+                            <span class="tool-badge">Jenkins</span><span class="tool-badge">GitHub Actions</span><span class="tool-badge">Git</span><span class="tool-badge">GitLab</span><span class="tool-badge">ArgoCD</span>
+                        </div>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Containers & Orchestration</h4>
+                        <div class="tools-cloud">
+                            <span class="tool-badge">Docker</span><span class="tool-badge">Kubernetes</span><span class="tool-badge">Helm</span><span class="tool-badge">Podman</span><span class="tool-badge">Docker Compose</span>
+                        </div>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Security & Monitoring</h4>
+                        <div class="tools-cloud">
+                            <span class="tool-badge">SonarQube</span><span class="tool-badge">Trivy</span><span class="tool-badge">Prometheus</span><span class="tool-badge">Grafana</span><span class="tool-badge">Nmap</span><span class="tool-badge">Wireshark</span><span class="tool-badge">Metasploit</span>
+                        </div>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>IaC & Automation</h4>
+                        <div class="tools-cloud">
+                            <span class="tool-badge">Terraform</span><span class="tool-badge">CloudFormation</span><span class="tool-badge">Ansible</span><span class="tool-badge">Bash</span><span class="tool-badge">Python</span><span class="tool-badge">PowerShell</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience" style="padding: 5rem 0;">
+        <div class="container">
+            <span class="section-subtitle">Work Experience</span>
+            <h2>Building the future<br>one deployment at a time</h2>
+            <div class="experience-grid">
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <span class="exp-date">2025 – Present</span>
+                        <span class="exp-company">MicroTech</span>
+                    </div>
+                    <h3 style="color:#fff; margin-bottom: 1rem;">DevOps Engineer</h3>
+                    <ul style="color:#94a3b8; list-style: none;">
+                        <li><i class="fas fa-chevron-right" style="color:#38bdf8; font-size:0.8rem; margin-right:0.5rem;"></i>MySQL backup automation (cron + encrypted snapshots)</li>
+                        <li><i class="fas fa-chevron-right" style="color:#38bdf8; font-size:0.8rem; margin-right:0.5rem;"></i>Prometheus/Grafana monitoring for 20+ nodes</li>
+                        <li><i class="fas fa-chevron-right" style="color:#38bdf8; font-size:0.8rem; margin-right:0.5rem;"></i>Bash/PowerShell hybrid automation</li>
+                        <li><i class="fas fa-chevron-right" style="color:#38bdf8; font-size:0.8rem; margin-right:0.5rem;"></i>Multi-OS server hardening (Linux/Windows)</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span class="tech-pill">MySQL</span><span class="tech-pill">Prometheus</span><span class="tech-pill">Bash</span><span class="tech-pill">PowerShell</span>
+                    </div>
+                </div>
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <span class="exp-date">2023 – 2025</span>
+                        <span class="exp-company">Cyberwing.pk</span>
+                    </div>
+                    <h3 style="color:#fff; margin-bottom: 1rem;">DevOps & Linux Support</h3>
+                    <ul style="color:#94a3b8; list-style: none;">
+                        <li><i class="fas fa-chevron-right" style="color:#38bdf8; font-size:0.8rem; margin-right:0.5rem;"></i>Maintained Linux training environments</li>
+                        <li><i class="fas fa-chevron-right" style="color:#38bdf8; font-size:0.8rem; margin-right:0.5rem;"></i>Supported CI/CD labs and container deployments</li>
+                        <li><i class="fas fa-chevron-right" style="color:#38bdf8; font-size:0.8rem; margin-right:0.5rem;"></i>Server configuration & performance tuning</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span class="tech-pill">Linux</span><span class="tech-pill">Docker</span><span class="tech-pill">CI/CD</span><span class="tech-pill">Bash</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (based on your initial list) -->
+    <section id="projects" style="padding: 5rem 0; background: #0f0f17;">
+        <div class="container">
+            <span class="section-subtitle">Projects</span>
+            <h2>Real-world implementations</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-server"></i></div>
+                    <h4>SMB Server on Cloud</h4>
+                    <p>Secure SMB/CIFS deployment on AWS with encrypted EFS and backup lifecycle.</p>
+                    <div><span class="tech-pill">AWS</span><span class="tech-pill">Samba</span><span class="tech-pill">IAM</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-cubes"></i></div>
+                    <h4>Multi-container App with Docker</h4>
+                    <p>Node.js + Redis + Nginx compose setup with Let's Encrypt and healthchecks.</p>
+                    <div><span class="tech-pill">Docker</span><span class="tech-pill">Compose</span><span class="tech-pill">Nginx</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-database"></i></div>
+                    <h4>Node.js + MySQL on RDS</h4>
+                    <p>Production-ready app with AWS RDS (MySQL), read replicas, and automated snapshots.</p>
+                    <div><span class="tech-pill">RDS</span><span class="tech-pill">Node.js</span><span class="tech-pill">VPC</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>AWS Lambda S3 Automation</h4>
+                    <p>Serverless function resizing images on S3 upload, using Python and CDK.</p>
+                    <div><span class="tech-pill">Lambda</span><span class="tech-pill">S3</span><span class="tech-pill">CDK</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h4>CloudFormation IaC</h4>
+                    <p>Complete VPC, subnets, NAT, and EC2 auto-scaling defined as code.</p>
+                    <div><span class="tech-pill">CFN</span><span class="tech-pill">Auto Scaling</span><span class="tech-pill">YAML</span></div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-dharmachakra"></i></div>
+                    <h4>Kubernetes Labs & Helm</h4>
+                    <p>K8s cluster with stateful apps, PVC, ConfigMaps, and Helm charts.</p>
+                    <div><span class="tech-pill">K8s</span><span class="tech-pill">Helm</span><span class="tech-pill">StatefulSet</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Certifications -->
+    <section id="certs" style="padding: 5rem 0;">
+        <div class="container">
+            <span class="section-subtitle">Credentials</span>
+            <h2>Licenses & certifications</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-year">2024</div>
+                    <div class="award-title">Certified Ethical Hacker (CEH)</div>
+                    <div class="award-desc">EC-Council</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">2023</div>
+                    <div class="award-title">RHCSA</div>
+                    <div class="award-desc">Red Hat</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">2023</div>
+                    <div class="award-title">Cybersecurity Essentials</div>
+                    <div class="award-desc">Cisco</div>
+                </div>
+            </div>
+            <div class="cert-grid" style="margin-top: 2rem;">
+                <div class="cert-item">
+                    <i class="fas fa-certificate"></i>
+                    <div class="cert-info">
+                        <h5>DevOps Certification</h5>
+                        <p>Cyberwing.pk</p>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <i class="fas fa-certificate"></i>
+                    <div class="cert-info">
+                        <h5>GitHub Foundations</h5>
+                        <p>GitHub (in progress)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with AI Assistant -->
+    <section id="contact" style="padding: 3rem 0 5rem;">
+        <div class="container">
+            <div class="contact-section">
+                <div class="contact-grid">
+                    <div>
+                        <span class="section-subtitle">Let's Connect</span>
+                        <h2 style="color: #fff;">Ready to build something amazing?</h2>
+                        <p style="color: #94a3b8; margin: 2rem 0;">Let's discuss how my DevSecOps expertise can accelerate your next project.</p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <i class="fas fa-envelope" style="color:#38bdf8;"></i> 
+        muhammadali2002kwl@gmail.com
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <i class="fas fa-phone-alt" style="color:#38bdf8;"></i> 
+        +923107890700
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <i class="fab fa-github" style="color:#38bdf8;"></i> 
+        EngineerMuhammadAli977
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <i class="fab fa-linkedin" style="color:#38bdf8;"></i> 
+        <a href="https://www.linkedin.com/in/mralinadeem2000/" target="_blank" style="color: inherit; text-decoration: none;">
+            linkedin.com/in/mralinadeem2000
+        </a>
+    </div>
+</div>
+                    </div>
+                    <div>
+                        <div class="chat-bubble">
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                <div class="assistant-avatar">MA</div>
+                                <div><strong style="color:#fff;">DevOps AI Assistant</strong><br><span style="color:#38bdf8;">Online • Ready to help</span></div>
+                            </div>
+                            <p style="color: #cbd5e1;">👋 Hi! I'm Muhammad's AI assistant. I can help you learn about his DevSecOps expertise, certifications, and professional experience.</p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                <span class="tech-pill">Ask about experience</span>
+                                <span class="tech-pill">Skills</span>
+                                <span class="tech-pill">Projects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Muhammad Ali — DevSecOps Engineer. Built with⚡and a passion for security.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
